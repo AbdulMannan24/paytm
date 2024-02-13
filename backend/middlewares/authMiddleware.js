@@ -12,8 +12,14 @@ function authMiddleware(req, res, next) {
         
         let token = authHeader.split(' ')[1];
         let decoded = jwt.verify(token, process.env.SECRET_KEY);
-        req.userId = decoded.userId;
-        next();
+        
+        if (decoded.userId) {
+            req.userId = decoded.userId;
+            next();
+        } else {
+            return res.json({message: "Invalid User"});
+        }
+        
     } catch (err) {
         console.log(err);
         res.json({message: "Invalid Token"});
