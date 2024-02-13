@@ -5,6 +5,7 @@ const User = require('../models/User');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 const { authMiddleware } = require('../middlewares/authMiddleware');
+const { Account } = require('../models/Account');
 const secretKey = process.env.SECRET_KEY;
 
 router.get('/', authMiddleware, (req, res) => {
@@ -39,11 +40,17 @@ router.post('/signup', async (req, res) => {
         })
 
         if (user) {
-            let userId = user._id;
+            let userId = user._id.toString(); // this is to convert "new object('lkjflsajf')"" -> 'lkjflsajf'
+
             const token = jwt.sign({
                 userId : userId
             }, process.env.SECRET_KEY);
-        
+            
+            // creating an account for the user 
+            await Account.create({
+                userId: user._id,
+                balance: 1 + Math.random() * 10000
+            })
             res.json({
                 message: "User created successfully",
                 token: token
@@ -106,6 +113,39 @@ router.put('/update', authMiddleware, async (req, res) => {
         await User.updateOne({username: req.userId}, req.body);
         // this req.body is a json object which contains the updated info, so updateOne query will update the necessary fields
         res.json({message: "Updated successfully"});
+    } catch (err) {
+        console.log(err);
+        res.json({message: "Api Call Failed"});
+    }
+});
+
+router.get('/bulk', async (req, res) => {
+    try {
+        const filter = req.query.filter || ""; 
+        // if filter is empty then all users are fetched
+        const users = await User.find({
+            $or: [{
+                firstName: {
+                    "$regex": filter
+                }
+            }, {
+                lastName: {
+                    "$regex": filter
+                }
+            }]
+        })
+
+        return res.json({
+            user: users.map((user) => {
+                return {
+                    username: user.username,
+                    firstName: user.firstName,
+                    lastName: user.lastName,
+                    _id: user._id
+                }
+            })
+        })
+
     } catch (err) {
         console.log(err);
         res.json({message: "Api Call Failed"});
