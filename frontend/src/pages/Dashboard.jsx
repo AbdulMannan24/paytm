@@ -11,10 +11,9 @@ export default function Dashboard() {
     async function fetchBalance() {
         let token ='Bearer '+ localStorage.getItem("token");
         let response = await axios.get(Api + "/account/balance", {
-            headers: { 'authorization': token },
+            headers: { authorization: token },
         });
         if (response.data.balance) setBalance(response.data.balance);
-        if (response.data.message) setBalance("-1");
         return response;
     }
     useEffect( ()=> {
