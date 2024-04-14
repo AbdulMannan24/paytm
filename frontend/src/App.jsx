@@ -3,6 +3,7 @@ import SingUp from './pages/SingUp'
 import SignIn from './pages/SignIn'
 import Dashboard from './pages/Dashboard'
 import { SendMoney } from './pages/SendMoney'
+import Home from './pages/Home'
 
 function App() {
 
@@ -10,8 +11,9 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
+            <Route path="/" element = {< Home />} />
             <Route path= '/signup' element= { <SingUp />}/>
-            <Route path= '/signin' element= { <SignIn />} />
+            {/* <Route path= '/signin' element= { <SignIn />} /> */}
             <Route path= '/dashboard' element= { <Dashboard />} />
             <Route path = '/send' element= { <SendMoney />} />
         </Routes>

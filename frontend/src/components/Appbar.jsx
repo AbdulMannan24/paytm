@@ -6,7 +6,7 @@ export default function Appbar({name}){
     const navigate = useNavigate()
     function handleLogout() {
         localStorage.setItem("token", "");
-        navigate('/signin');
+        navigate('/');
     }
     return <div className="shadow h-14 flex justify-between">
         <div className="flex flex-col justify-center h-full ml-4">

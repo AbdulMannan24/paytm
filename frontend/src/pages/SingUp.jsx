@@ -46,7 +46,7 @@ export default function SingUp() {
             navigate("/dashboard")
           }} label={"Sign up"} />
         </div>
-        <BottomWarning label={"Already have an account?"} buttonText={"Sign in"} to={"/signin"} />
+        <BottomWarning label={"Already have an account?"} buttonText={"Sign in"} to={"/"} />
       </div>
     </div>
   </div>
