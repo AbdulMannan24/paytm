@@ -21,7 +21,7 @@ export default function SignIn(){
         <InputBox onChange = { (e) => {
             setUsername(e.target.value);   
         }
-        } type = {"text"} placeholder="harkirat@gmail.com" label={"Email"} />
+        } type = {"text"} placeholder="john@gmail.com" label={"Email"} />
         <InputBox onChange = { (e) => {
             setPassword(e.target.value);
         }}
