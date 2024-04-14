@@ -33,8 +33,10 @@ export default function SignIn(){
                     password
                 });
                 console.log(response.data.token);
-                if (response.data.token) localStorage.setItem("token", response.data.token);
-                navigate("/dashboard")
+                if (response.data.token) {
+                  localStorage.setItem("token", response.data.token);
+                  navigate("/dashboard");
+                } else window.alert(response.data.message);
           }}
           label={"Sign in"} />
         </div>
