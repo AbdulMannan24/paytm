@@ -28,14 +28,14 @@ router.post('/transfer', authMiddleware, async (req, res) => {
         let account = await Account.findOne({userId: req.userId}).session(session);
         if (!account || account.balance < amount) {
             await session.abortTransaction();
-            res.status(400).json({message: 'Insufficient Balance'});
+            res.status(200).json({message: 'Insufficient Balance'});
             return;
         }
 
         let receiver = await Account.findOne({userId: to}).session(session);
         if (!receiver) {
             await session.abortTransaction();
-            res.status(400).json({message: 'User not found'});
+            res.status(200).json({message: 'User not found'});
             return;
         }
 
@@ -44,7 +44,7 @@ router.post('/transfer', authMiddleware, async (req, res) => {
 
         await session.commitTransaction();
 
-        res.json({message: "Transfer successful"});
+        res.json({message: "success"});
     } catch (err) {
         console.log(err);
         await session.abortTransaction();

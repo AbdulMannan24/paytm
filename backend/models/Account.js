@@ -4,7 +4,7 @@ const accountSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId, // this is how you refer a previously created table and bind this as slave
         ref: 'User',
-        requireid: true
+        required: true
     },
     balance: {
         type: Number,

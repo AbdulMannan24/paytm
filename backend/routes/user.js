@@ -41,7 +41,7 @@ router.post('/signup', async (req, res) => {
 
         if (user) {
             let userId = user._id.toString(); // this is to convert "new object('lkjflsajf')"" -> 'lkjflsajf'
-
+            console.log(userId)
             const token = jwt.sign({
                 userId : userId
             }, process.env.SECRET_KEY);
@@ -85,7 +85,7 @@ router.post('/signin', async (req, res) => {
         const checkPassword = await bcrypt.compare(req.body.password, userExists.password);
         if (checkPassword) {
             let token = jwt.sign({
-                userId: userExists.username,
+                userId: userExists._id,
             }, process.env.SECRET_KEY);
             return res.status(200).json({
                 token: token
