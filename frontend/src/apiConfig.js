@@ -1,1 +1,1 @@
-const export Api = ""
+export const Api = "https://paytm-cean.onrender.com/api/v1"

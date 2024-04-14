@@ -1,6 +1,7 @@
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import axios from "axios";
 import { useState } from 'react';
+import { Api } from '../apiConfig';
 
 export const SendMoney = () => {
     const [searchParams] = useSearchParams();
@@ -43,7 +44,7 @@ export const SendMoney = () => {
                     />
                     </div>
                     <button onClick={ async () => {
-                        let response =  await axios.post("http://localhost:3000/api/v1/account/transfer", {
+                        let response =  await axios.post(Api + "/account/transfer", {
                             to: id,
                             amount
                         }, {

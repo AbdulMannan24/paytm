@@ -6,6 +6,7 @@ import { Button } from "../components/Button"
 import { Heading } from "../components/Heading"
 import { InputBox } from "../components/InputBox"
 import { SubHeading } from "../components/SubHeading"
+import { Api } from "../apiConfig";
 
 export default function SingUp() {
     const [firstName, setFirstName] = useState("");
@@ -29,13 +30,13 @@ export default function SingUp() {
         }} placeholder="Doe" label={"Last Name"} />
         <InputBox type= {"text"} onChange={e => {
           setUsername(e.target.value);
-        }} placeholder="harkirat@gmail.com" label={"Email"} />
+        }} placeholder="user@gmail.com" label={"Email"} />
         <InputBox type= {"password"} onChange={(e) => {
           setPassword(e.target.value)
         }} placeholder="123456" label={"Password"} />
         <div className="pt-4">
           <Button onClick={async () => {
-            const response = await axios.post("http://localhost:3000/api/v1/user/signup", {
+            const response = await axios.post(Api + "/user/signup", {
               username,
               firstName,
               lastName,

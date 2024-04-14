@@ -6,6 +6,7 @@ import { InputBox } from "../components/InputBox"
 import { SubHeading } from "../components/SubHeading"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
+import { Api } from "../apiConfig"
 
 export default function SignIn(){
     const [username, setUsername] = useState("");
@@ -27,7 +28,7 @@ export default function SignIn(){
          type = {"password"} placeholder="123456" label={"Password"} />
         <div className="pt-4">
           <Button onPress={async ()=> {
-                let response = await axios.post("http://localhost:3000/api/v1/user/signin", {
+                let response = await axios.post(Api+ "/user/signin", {
                     username,
                     password
                 });
