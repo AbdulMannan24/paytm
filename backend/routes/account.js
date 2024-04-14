@@ -48,7 +48,7 @@ router.post('/transfer', authMiddleware, async (req, res) => {
     } catch (err) {
         console.log(err);
         await session.abortTransaction();
-        res.status(400).json({message: 'Api Call Failed'});
+        res.json({message: 'Api Call Failed'});
     }
    
 });

@@ -16,7 +16,7 @@ router.post('/signup', async (req, res) => {
     try {
         const { success } = signupBody.safeParse(req.body);
         if (!success) {
-            return res.status(411).json({
+            return res.json({
                 message: "Email already taken / Incorrect inputs"
             })
         }
@@ -25,7 +25,7 @@ router.post('/signup', async (req, res) => {
             username: req.body.username
         })
         if (userExists) {
-            return res.status(411).json({
+            return res.json({
                 message: "Email already taken/Incorrect inputs"
             })
         }
@@ -70,14 +70,14 @@ router.post('/signin', async (req, res) => {
     try {
         const {success} = signinBody.safeParse(req.body);
         if (!success) {
-            return res.status(411).json({
+            return res.json({
                 message: "Incorrect inputs"
             })
         }
 
         const userExists = await User.findOne({username: req.body.username});
         if (!userExists) {
-            return res.status(411).json({
+            return res.json({
                 message: "User does not exist"
             })
         }
@@ -91,7 +91,7 @@ router.post('/signin', async (req, res) => {
                 token: token
             })
         } else {
-            return res.status(411).json({
+            return res.json({
                 message: "Password is incorrect"
             })
         }
@@ -106,7 +106,7 @@ router.put('/update', authMiddleware, async (req, res) => {
     try {
         let {success} = updateBody.safeParse(req.body);
         if (!success) {
-            return res.status(411).json({
+            return res.json({
                 message: "Error while updating information"
             })
         }

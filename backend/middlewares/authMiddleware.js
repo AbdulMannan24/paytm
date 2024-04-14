@@ -5,7 +5,7 @@ function authMiddleware(req, res, next) {
         let authHeader = req.headers.authorization;
 
         if (!authHeader || !authHeader.startsWith('Bearer ')) {
-            return res.status(403).json({
+            return res.json({
                 message: 'Invalid Bearer token'
             });
         }
