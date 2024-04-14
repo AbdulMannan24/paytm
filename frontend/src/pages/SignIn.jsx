@@ -32,7 +32,7 @@ export default function SignIn(){
                     username,
                     password
                 });
-                localStorage.setItem("token", response.data.token)
+                if (response.data.token) localStorage.setItem("token", response.data.token);
                 navigate("/dashboard")
           }}
           label={"Sign in"} />
