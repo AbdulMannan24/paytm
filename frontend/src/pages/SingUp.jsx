@@ -14,12 +14,7 @@ export default function SingUp() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-    const [count, setCount] = useState(0);
-    
-    useEffect(()=> {
-      window.alert("for Testing,can also use Email: 'testing@gmail.com' & password: 'testing' , first Api request might take 50seconds to activate Free Instance,Thank you");
-    },[count])
-
+  
     return (
         <>
             <div className="bg-slate-300 h-screen flex justify-center">

@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
+import { useState } from 'react'
 import SingUp from './pages/SingUp'
 import SignIn from './pages/SignIn'
 import Dashboard from './pages/Dashboard'
@@ -6,6 +7,11 @@ import { SendMoney } from './pages/SendMoney'
 import Home from './pages/Home'
 
 function App() {
+  const [count, setCount] = useState(0);
+    
+  useEffect(()=> {
+    window.alert("for Testing,can also use Email: 'testing@gmail.com' & password: 'testing' , first Api request might take 50seconds to activate Free Instance,Thank you");
+  },[count])
 
   return (
     <>
