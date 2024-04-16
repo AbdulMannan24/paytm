@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route} from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import SingUp from './pages/SingUp'
 import SignIn from './pages/SignIn'
 import Dashboard from './pages/Dashboard'
